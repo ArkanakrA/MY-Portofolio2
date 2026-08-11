@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Andi Arkan Afif Sukansir — Portofolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <!-- ===== NAVIGASI ===== -->
+    <header class="nav" id="nav">
+        <a href="#home" class="nav__brand">Nav.</a>
+        <button class="nav__toggle" id="navToggle" aria-label="Buka menu">
+            <span></span><span></span><span></span>
+        </button>
+        <nav class="nav__links" id="navLinks">
+            <a href="#about">Tentang</a>
+            <a href="#skills">Skills</a>
+            <a href="#achievements">Prestasi</a>
+            <a href="#contact">Kontak</a>
+        </nav>
+    </header>
+
+    <!-- ===== HERO / INTRO ===== -->
+    <section class="hero" id="home">
+        <div class="hero__index">01 — Perkenalan</div>
+        <h1 class="hero__title">
+            Halo, saya <span class="hero__name">Andi Arkan Afif Sukansir</span>.<br />
+            Saya membangun hal-hal <em>dengan niat.</em>
+        </h1>
+        <div class="fotokitablur">
+            <img src="foto/Arkan.jpg" alt="Foto Andi Arkan Afif Sukansir"/>
+        </div>
+        <div class="hero__subtitle">
+            <span class="subtitle__label">Deskripsi:</span>
+            <p>Saya lahir di Makassar pada 3 April 2010. Saya adalah seorang siswa dari SMK 3 Soppeng yang hebat, keren, ganteng, dan berwibawa.</p>
+        </div>
+        <a href="#contact" class="hero__cta">Hubungi Saya →</a>
+    </section>
+
+    <!-- ===== ABOUT ===== -->
+    <section class="section" id="about">
+        <div class="section__label">02 — Tentang Saya</div>
+        <div class="section__content about__grid">
+            <div class="about__text">
+                <div class="about__block">
+                    <h3>Lahir</h3>
+                    <p>Lahir di Makassar pada 3 April 2010.</p>
+                </div>
+                <div class="about__block">
+                    <h3>Sifat</h3>
+                    <p>Saya jujur dan tidak suka berbuat curang.</p>
+                </div>
+            </div>
+            <div class="about__facts">
+                <div class="fact">
+                    <span class="fact__num">0+</span>
+                    <span class="fact__label">Tahun Pengalaman (Belum Lulus)</span>
+                </div>
+                <div class="fact">
+                    <span class="fact__num">10+</span>
+                    <span class="fact__label">Tahun Belajar</span>
+                </div>
+                <div class="fact">
+                    <span class="fact__num">2+</span>
+                    <span class="fact__label">Sertifikat / Prestasi</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== SKILLS ===== -->
+    <section class="section section--alt" id="skills">
+        <div class="section__label">03 — Skills</div>
+        <div class="section__content">
+            <div class="skills__grid">
+                <div class="skill-card">
+                    <h3>Rakit PC</h3>
+                    <p>Saya mampu merakit laptop/pc secara mandiri kurang dari 30 menit.</p>
+                </div>
+                <div class="skill-card">
+                    <h3>Membuat Kabel LAN</h3>
+                    <p>Tinggal diitukan ininya, gampang itumah.</p>
+                </div>
+                <div class="skill-card">
+                    <h3>Menghirup Oksigen</h3>
+                    <p>Langsung saja tarik nafas.</p>
+                </div>
+                <div class="skill-card">
+                    <h3>Berbicara</h3>
+                    <p>Saya bisa mengeluarkan udara lewat mulut sambil menggerakkan bibir, lidah, dan tenggorokan yang dapat menghasilkan berbagai suara unik.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== ACHIEVEMENTS / PRESTASI ===== -->
+    <section class="section" id="achievements">
+        <div class="section__label">04 — Prestasi</div>
+        <div class="section__content">
+            <ul class="timeline">
+                <li class="timeline__item">
+                    <span class="timeline__year">2025</span>
+                    <div class="timeline__body">
+                        <h3>Jago Tidur</h3>
+                        <p>Bisa tidur 12 jam sehari.</p>
+                    </div>
+                </li>
+                <li class="timeline__item">
+                    <span class="timeline__year">2024</span>
+                    <div class="timeline__body">
+                        <h3>Jago Game</h3>
+                        <p>Skill issue.</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- ===== CONTACT ===== -->
+    <section class="section section--alt" id="contact">
+        <div class="section__label">05 — Kontak</div>
+        <div class="section__content contact__grid">
+            <div class="contact__intro">
+                <h2>Mari terhubung.</h2>
+                <p>Punya pertanyaan atau ingin kolaborasi? Kirim pesan langsung lewat form ini.</p>
+                <div class="contact__links">
+                    <a href="mailto:Andiarkan536@gmail.com" class="email-link">Andiarkan536@gmail.com</a>
+                    <a href="https://github.com/ArkanakrA" target="_blank" rel="noopener">GitHub</a>
+                </div>
+            </div>
+            <form class="contact__form" onsubmit="event.preventDefault(); alert('Form ini contoh statis — hubungkan ke layanan email seperti Formspree agar berfungsi.');">
+                <label> Nama <input type="text" name="name" placeholder="Nama kamu" required /> </label>
+                <label> Email <input type="email" name="email" placeholder="email kamu.com" required /> </label>
+                <label> Pesan <textarea name="message" rows="4" placeholder="Tulis pesan..." required></textarea> </label>
+                <button type="submit">Kirim Pesan</button>
+            </form>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <p>© <span id="year"></span> Andi Arkan Afif Sukansir. Dibuat dengan VS Code + CHAT GPT.</p>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>

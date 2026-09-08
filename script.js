@@ -1,61 +1,107 @@
-// Ganti URL di bawah ini dengan Web App URL dari Google Apps Script
-const scriptURL = 'https://script.google.com/macros/s/AKfycbwOQ_e0QZmubbKnWwGyCMQcjuYvXEGRJiuCZNkoRjp1NKSexhr2E6oR9mIiwMcXG1aM/exec';
-const guestbookForm = document.getElementById('guestbookForm');
-const guestList = document.getElementById('guestList');
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwc-4xoRM6mluqCbQ7qriMkc40U1soZR1vciVCXX96JJXK4vuXnOXHHY-aGYvIfQEVj/exec";
 
-if (guestbookForm) {
-    guestbookForm.addEventListener('submit', function (e) {
-        e.preventDefault();
+// Mengambil elemen sesuai ID pada HTML
+const form = document.getElementById("guestbookForm");
+const nameInput = document.getElementById("guestName");
+const messageInput = document.getElementById("guestMessage");
+const list = document.getElementById("guestList");
 
-        const submitBtn = guestbookForm.querySelector('button[type="submit"]');
-        const originalBtnText = submitBtn.innerText;
-        
-        // Indikator saat proses pengiriman
-        submitBtn.innerText = 'Mengirim...';
-        submitBtn.disabled = true;
+// Elemen pesan status dinamis
+const formMsg = document.createElement("p");
+formMsg.style.marginTop = "10px";
+formMsg.style.fontSize = "0.9rem";
+form.appendChild(formMsg);
 
-        const nameInput = document.getElementById('guestName').value;
-        const messageInput = document.getElementById('guestMessage').value;
+function escapeHTML(str) {
+    if (!str) return "";
+    const div = document.createElement("div");
+    div.textContent = str;
+    return div.innerHTML;
+}
 
-        const payload = {
-            name: nameInput,
-            message: messageInput
-        };
+function renderList(data) {
+    list.innerHTML = "";
 
-        fetch(scriptURL, {
-            method: 'POST',
-            mode: 'no-cors', // Menghindari isu CORS pada Google Apps Script
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(payload)
-        })
-        .then(() => {
-            alert('Terima kasih! Pesan Anda telah tersimpan di Google Sheets.');
+    if (!Array.isArray(data) || data.length === 0) {
+        list.innerHTML = '<li class="guestbook__item"><p class="guestbook__message">Belum ada pesan. Jadilah yang pertama!</p></li>';
+        return;
+    }
 
-            // Opsional: Langsung tampilkan pesan di halaman tanpa reload
-            if (guestList) {
-                const newItem = document.createElement('li');
-                newItem.className = 'guestbook__item';
-                newItem.innerHTML = `
-                    <div class="guestbook__item-header">
-                        <span class="guestbook__author">${nameInput}</span>
-                        <span class="guestbook__date">Baru saja</span>
-                    </div>
-                    <p class="guestbook__message">${messageInput}</p>
-                `;
-                guestList.prepend(newItem);
-            }
-
-            guestbookForm.reset();
-        })
-        .catch(error => {
-            console.error('Error!', error);
-            alert('Gagal mengirim pesan. Silakan coba lagi.');
-        })
-        .finally(() => {
-            submitBtn.innerText = originalBtnText;
-            submitBtn.disabled = false;
-        });
+    // Urutkan dari yang terbaru (reverse)
+    data.slice().reverse().forEach((entry) => {
+        const li = document.createElement("li");
+        li.className = "guestbook__item";
+        li.innerHTML = `
+            <div class="guestbook__item-header" style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
+                <span class="guestbook__author" style="font-weight: 800; font-size: 1.15rem; color: #000;">${escapeHTML(entry.nama)}</span>
+                <span style="color: #777;"></span>
+                <span class="guestbook__date" style="font-size: 0.88rem; color: #666; font-style: italic;">${escapeHTML(entry.tanggal)}</span>
+            </div>
+            <p class="guestbook__message" style="margin: 0; font-size: 1rem; color: #333;">${escapeHTML(entry.komentar)}</p>
+        `;
+        list.appendChild(li);
     });
 }
+
+function muatData() {
+    list.innerHTML = '<li class="guestbook__item"><p class="guestbook__message">Memuat pesan...</p></li>';
+    
+    fetch(SCRIPT_URL)
+        .then((res) => {
+            if (!res.ok) throw new Error("Gagal mengambil data");
+            return res.json();
+        })
+        .then((data) => renderList(data))
+        .catch((err) => {
+            console.error("Error muatData:", err);
+            list.innerHTML = '<li class="guestbook__item"><p class="guestbook__message">Gagal memuat pesan. Silakan coba lagi nanti.</p></li>';
+        });
+}
+
+form.addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    const submitBtn = form.querySelector('button[type="submit"]');
+    const nama = nameInput.value.trim();
+    const komentar = messageInput.value.trim();
+
+    if (!nama || !komentar) {
+        formMsg.textContent = "Mohon isi semua kolom.";
+        formMsg.style.color = "red";
+        return;
+    }
+
+    formMsg.textContent = "Mengirim pesan...";
+    formMsg.style.color = "inherit";
+    if (submitBtn) submitBtn.disabled = true;
+
+    fetch(SCRIPT_URL, {
+        method: "POST",
+        headers: {
+            "Content-Type": "text/plain;charset=utf-8"
+        },
+        body: JSON.stringify({ nama, komentar })
+    })
+        .then((res) => {
+            if (!res.ok) throw new Error("Gagal mengirim data");
+            return res.json();
+        })
+        .then(() => {
+            form.reset();
+            formMsg.textContent = "Terima kasih, pesan kamu sudah tersimpan! ✅";
+            formMsg.style.color = "green";
+            setTimeout(() => (formMsg.textContent = ""), 4000);
+            muatData();
+        })
+        .catch((err) => {
+            console.error("Error submit form:", err);
+            formMsg.textContent = "Gagal mengirim. Coba lagi ya.";
+            formMsg.style.color = "red";
+        })
+        .finally(() => {
+            if (submitBtn) submitBtn.disabled = false;
+        });
+});
+
+// Muat data saat halaman pertama kali dibuka
+muatData();

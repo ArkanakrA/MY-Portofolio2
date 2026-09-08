@@ -1,0 +1,165 @@
+/* ==========================================
+   GAYA BUKU TAMU DIGITAL (bt.css)
+   ========================================== */
+
+/* Styling Dasar Halaman */
+body {
+    font-family: 'Work Sans', sans-serif;
+    background-color: #f9f9f9;
+    color: #1a1a1a;
+    margin: 0;
+    padding: 2rem 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Kontainer Utama Buku Tamu */
+#guestbook {
+    max-width: 800px;
+    width: 100%;
+    background: #ffffff;
+    padding: 2.5rem;
+    border-radius: 12px;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+    margin-top: 2rem;
+}
+
+/* Label Section */
+.section__label {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: #666;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+}
+
+/* Header & Deskripsi */
+.contact__intro h2 {
+    font-family: 'Fraunces', serif;
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    color: #111;
+}
+
+.contact__intro p {
+    color: #555;
+    margin-bottom: 2rem;
+    line-height: 1.6;
+}
+
+/* Form Input & Textarea */
+.contact__form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+
+.contact__form label {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    font-weight: 500;
+    font-size: 0.95rem;
+    color: #333;
+}
+
+.contact__form input,
+.contact__form textarea {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 0.95rem;
+    background-color: #fafafa;
+    box-sizing: border-box;
+    transition: all 0.2s ease-in-out;
+}
+
+.contact__form input:focus,
+.contact__form textarea:focus {
+    outline: none;
+    border-color: #111;
+    background-color: #fff;
+    box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.05);
+}
+
+/* Tombol Kirim (.hero__cta) */
+.hero__cta {
+    align-self: flex-start;
+    background-color: #111;
+    color: #fff;
+    padding: 0.8rem 1.8rem;
+    border-radius: 6px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+    margin-top: 0.5rem;
+}
+
+.hero__cta:hover {
+    background-color: #333;
+    transform: translateY(-2px);
+}
+
+/* Section Daftar Pengunjung (Daftar Pesan) */
+.guestbook__entries,
+.section__content h3 {
+    font-family: 'Fraunces', serif;
+    font-size: 1.3rem;
+    margin-top: 2rem;
+    color: #111;
+}
+
+/* Item Pesan */
+.guestbook__list,
+#guestList {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.guestbook__item,
+#guestList li {
+    background-color: #fafafa;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    border-radius: 8px;
+    padding: 1.2rem;
+    transition: transform 0.2s ease;
+}
+
+.guestbook__item:hover,
+#guestList li:hover {
+    transform: translateX(4px);
+    border-color: rgba(0, 0, 0, 0.15);
+}
+
+.guestbook__item-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.guestbook__author {
+    font-weight: 600;
+    color: #111;
+    font-size: 1rem;
+}
+
+.guestbook__date {
+    font-size: 0.8rem;
+    color: #888;
+}
+
+.guestbook__message,
+#guestList li p {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: #444;
+    margin: 0;
+}

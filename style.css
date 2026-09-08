@@ -463,7 +463,6 @@ FOOTER
 /* ========================================= 
 RESPONSIVE 
 ========================================= */ 
-@media (max-width: 720px) { 
     .nav__links { 
         position: absolute; 
         top: 100%; 
@@ -471,3 +470,4 @@ RESPONSIVE
         right: 0; 
         background: rgba(40, 0, 90, 0.95); 
         flex-direction: column;
+    }

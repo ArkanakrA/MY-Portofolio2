@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Buku Tamu Digital</title>
+    <link rel="stylesheet" href="bt.css" />
+</head>
+<body>
+
+    <!-- ===== BUKU TAMU DIGITAL ===== -->
+    <section class="section" id="guestbook">
+        <div class="section__label">06 — Buku Tamu</div>
+        <div class="section__content contact__grid">
+            <div class="contact__intro">
+                <h2>Buku Tamu Digital</h2>
+                <p>Terima kasih sudah berkunjung! Tinggalkan jejak atau pesan Anda di sini.</p>
+            </div>
+            
+            <form class="contact__form" id="guestbookForm">
+                <label>
+                    Nama
+                    <input type="text" id="guestName" placeholder="Nama Anda" required />
+                </label>
+                <label>
+                    Pesan / Kesan
+                    <textarea id="guestMessage" rows="4" placeholder="Tuliskan pesan atau kesan Anda di sini..." required></textarea>
+                </label>
+                <button type="submit" class="hero__cta" style="border: none; cursor: pointer; display: inline-block; text-align: center;">Kirim Ke Buku Tamu →</button>
+            </form>
+        </div>
+
+        <!-- Daftar Pesan Buku Tamu -->
+        <div class="guestbook__entries">
+            <h3 class="guestbook__title">Pesan Pengunjung</h3>
+            <ul class="guestbook__list" id="guestList">
+                <li class="guestbook__item">
+                    <div class="guestbook__item-header">
+                        <span class="guestbook__author">Pengunjung</span>
+                        <span class="guestbook__date">Baru saja</span>
+                    </div>
+                    <p class="guestbook__message">Website portofolio yang keren!</p>
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Script harus ditaruh di paling bawah sebelum penutup body -->
+    <script src="script.js"></script>
+</body>
+</html>
